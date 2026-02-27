@@ -1,0 +1,105 @@
+\babel@toc {brazil}{}\relax 
+\contentsline {section}{\numberline {1}Números binários}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Bytes}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Bases numéricas}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Sistema posicional}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Conversão de bases}{5}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Conversão de uma base qualquer para base 10}{5}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Conversão da base 10 para uma base qualquer}{6}{subsubsection.1.4.2}%
+\contentsline {subsubsection}{\numberline {1.4.3}Conversão da base 10 para base 2, para números racionais}{6}{subsubsection.1.4.3}%
+\contentsline {subsubsection}{\numberline {1.4.4}Conversão de base n para base potência de n}{8}{subsubsection.1.4.4}%
+\contentsline {subsubsection}{\numberline {1.4.5}Conversão de base potência de n para base n}{8}{subsubsection.1.4.5}%
+\contentsline {subsection}{\numberline {1.5}Exercícios}{9}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Operações básicas com números binários}{10}{subsection.1.6}%
+\contentsline {subsubsection}{\numberline {1.6.1}Adição}{10}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {1.6.2}Subtração}{10}{subsubsection.1.6.2}%
+\contentsline {subsubsection}{\numberline {1.6.3}Multiplicação}{10}{subsubsection.1.6.3}%
+\contentsline {subsubsection}{\numberline {1.6.4}Divisão}{11}{subsubsection.1.6.4}%
+\contentsline {subsection}{\numberline {1.7}Exercícios}{11}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.8}Representação de números negativos em binário}{12}{subsection.1.8}%
+\contentsline {subsubsection}{\numberline {1.8.1}Complemento de 1}{12}{subsubsection.1.8.1}%
+\contentsline {subsubsection}{\numberline {1.8.2}Complemento de 2}{12}{subsubsection.1.8.2}%
+\contentsline {subsection}{\numberline {1.9}Exercícios}{13}{subsection.1.9}%
+\contentsline {subsection}{\numberline {1.10}Representação de números reais}{14}{subsection.1.10}%
+\contentsline {subsubsection}{\numberline {1.10.1}Notação científica × Ponto flutuante}{14}{subsubsection.1.10.1}%
+\contentsline {subsubsection}{\numberline {1.10.2}IEEE 754}{14}{subsubsection.1.10.2}%
+\contentsline {subsubsection}{\numberline {1.10.3}Expoente com viés (\textit {bias})}{15}{subsubsection.1.10.3}%
+\contentsline {subsubsection}{\numberline {1.10.4}Precisão simples e dupla}{15}{subsubsection.1.10.4}%
+\contentsline {subsubsection}{\numberline {1.10.5}Casos especiais}{15}{subsubsection.1.10.5}%
+\contentsline {subsubsection}{\numberline {1.10.6}Exemplo de conversão para IEEE 754}{16}{subsubsection.1.10.6}%
+\contentsline {subsection}{\numberline {1.11}Exercícios}{16}{subsection.1.11}%
+\contentsline {section}{\numberline {2}Terminologia e Símbolos}{17}{section.2}%
+\contentsline {section}{\numberline {3}Tabela Verdade}{17}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Introdução}{17}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Construção da Tabela Verdade}{17}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Operações Lógicas}{17}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Exercícios}{19}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Álgebra de Boole}{19}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Operações Fundamentais}{20}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Representação na forma de Diagrama de Venn}{20}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Expressões, Axiomas e Simplificação}{22}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Versão OR (Soma lógica)}{22}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Versão AND (Produto Lógico)}{23}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Demonstração das Propriedades}{23}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Propriedade 2: Elemento Nulo}{23}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Propriedade 8: Distributiva}{23}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Propriedade 9: Absorção 1}{24}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Propriedade 11: Consensus}{24}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Exercícios}{25}{subsection.6.5}%
+\contentsline {section}{\numberline {7}MINTERMOS E MAXTERMOS}{25}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Mintermos}{25}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Maxtermo}{26}{subsection.7.2}%
+\contentsline {section}{\numberline {8}Mapa de Karnaugh}{27}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Construção do Mapa de Karnaugh}{28}{subsection.8.1}%
+\contentsline {subsubsection}{\numberline {8.1.1}Mapa com 2 variáveis}{28}{subsubsection.8.1.1}%
+\contentsline {subsubsection}{\numberline {8.1.2}Mapa com 3 variáveis}{28}{subsubsection.8.1.2}%
+\contentsline {subsubsection}{\numberline {8.1.3}Mapa com 4 variáveis}{29}{subsubsection.8.1.3}%
+\contentsline {subsection}{\numberline {8.2}Preenchendo o mapa e simplificando as expressões}{30}{subsection.8.2}%
+\contentsline {subsubsection}{\numberline {8.2.1}Preenchendo o mapa}{30}{subsubsection.8.2.1}%
+\contentsline {subsubsection}{\numberline {8.2.2}Simplificando a expressão}{30}{subsubsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.3}Exercícios}{31}{subsection.8.3}%
+\contentsline {section}{\numberline {9}Somador}{32}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Meio-somador}{32}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Somador completo}{33}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Somador de n bits}{34}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Exercícios}{34}{subsection.9.4}%
+\contentsline {section}{\numberline {10}Subtrator}{35}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Meio-subtrator}{35}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Subtrator completo}{36}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Subtrator de n bits}{37}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Implementação alternativa}{37}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}Exercícios}{38}{subsection.10.5}%
+\contentsline {section}{\numberline {11}Multiplicador}{38}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Multiplicador por tabela-verdade}{39}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Multiplicador combinacional}{40}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Conclusão}{41}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Exercícios}{42}{subsection.11.4}%
+\contentsline {section}{\numberline {12}Decodificadores e Codificadores}{42}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Decodificador}{42}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Codificador}{44}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Associação entre Codificadores e Decodificadores}{45}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}Exercícios}{45}{subsection.12.4}%
+\contentsline {section}{\numberline {13}Circuito Combinacional}{46}{section.13}%
+\contentsline {section}{\numberline {14}Circuitos Sequenciais}{46}{section.14}%
+\contentsline {section}{\numberline {15}Multiplexadores e Demultiplexadores}{46}{section.15}%
+\contentsline {subsection}{\numberline {15.1}MUX}{46}{subsection.15.1}%
+\contentsline {subsubsection}{\numberline {15.1.1}MUX 4x1}{47}{subsubsection.15.1.1}%
+\contentsline {subsection}{\numberline {15.2}DEMUX}{47}{subsection.15.2}%
+\contentsline {subsubsection}{\numberline {15.2.1}DEMUX 1x4}{48}{subsubsection.15.2.1}%
+\contentsline {subsection}{\numberline {15.3}Multiplexador x Demultiplexador}{49}{subsection.15.3}%
+\contentsline {section}{\numberline {16}Unidade Lógica Aritmética (ULA)}{50}{section.16}%
+\contentsline {section}{\numberline {17}Formas de onda}{51}{section.17}%
+\contentsline {subsection}{\numberline {17.1}Tipos de Onda}{52}{subsection.17.1}%
+\contentsline {section}{\numberline {18}Flip-Flop}{53}{section.18}%
+\contentsline {subsection}{\numberline {18.1}Flip-Flop SR}{53}{subsection.18.1}%
+\contentsline {subsection}{\numberline {18.2}Flip-Flop D}{53}{subsection.18.2}%
+\contentsline {subsection}{\numberline {18.3}Flip-Flop JK}{53}{subsection.18.3}%
+\contentsline {section}{\numberline {19}Máquina de estados}{53}{section.19}%
+\contentsline {subsection}{\numberline {19.1}Máquina de Moore}{54}{subsection.19.1}%
+\contentsline {subsubsection}{\numberline {19.1.1}Exemplo: Máquina de Estado}{54}{subsubsection.19.1.1}%
+\contentsline {subsubsection}{\numberline {19.1.2}Implementação do circuíto lógico}{55}{subsubsection.19.1.2}%
+\contentsline {subsection}{\numberline {19.2}Máquina de Mealy}{57}{subsection.19.2}%
+\contentsline {subsubsection}{\numberline {19.2.1}Implementação do Detector de Sequência}{57}{subsubsection.19.2.1}%
+\contentsline {subsubsection}{\numberline {19.2.2}Tabela de Transição e Saída (Mealy)}{57}{subsubsection.19.2.2}%
+\contentsline {subsubsection}{\numberline {19.2.3}Equações Booleanas}{58}{subsubsection.19.2.3}%
+\contentsline {subsubsection}{\numberline {19.2.4}Implementação do circuito lógico}{59}{subsubsection.19.2.4}%
