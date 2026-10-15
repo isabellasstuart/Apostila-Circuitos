@@ -1,0 +1,54 @@
+\begin{thebibliography}{10}
+
+\bibitem{albini}
+Luiz Carlos~Pessoa Albini.
+\newblock Circuitos digitais: Anotações de aula.
+
+\bibitem{almeida2021}
+Paulo Ricardo Lisboa~de Almeida.
+\newblock Circuitos digitais, 2021.
+
+\bibitem{alves_flipflop}
+Marco A.~Zanata Alves.
+\newblock Circuitos lógicos: Flip-flops - slides.
+
+\bibitem{floyd2009}
+Thomas~L. Floyd.
+\newblock {\em Sistemas Digitais: Fundamentos e Aplicações}.
+\newblock 2009.
+
+\bibitem{furtado}
+Daniel~A. Furtado.
+\newblock Sistemas digitais: Introdução aos circuitos codificadores e
+  decodificadores.
+
+\bibitem{guilhermino}
+Abel Guilhermino.
+\newblock Máquinas de estados finitos.
+
+\bibitem{guntzel2001}
+José~L. Guntzel and Francisco~A. Nascimento.
+\newblock {\em Introdução aos Sistemas Digitais}.
+\newblock 2001.
+
+\bibitem{hausen2013}
+Rodrigo Hausen.
+\newblock Circuitos digitais, 2013.
+
+\bibitem{patterson2014}
+David~A. Patterson and John~L. Hennessy.
+\newblock {\em Arquitetura e Organização de Computadores: A Interface
+  Hardware/Software}.
+\newblock 2014.
+
+\bibitem{ruggiero1996}
+Marcia A.~G. Ruggiero and Vera L.~R. Lopes.
+\newblock {\em Cálculo Numérico: Aspectos Teóricos e Computacionais}.
+\newblock 1996.
+
+\bibitem{tocci2017}
+Ronald~J. Tocci, Gregory~L. Moss, and Neal~S. Widmer.
+\newblock {\em Sistemas Digitais}.
+\newblock 10 edition, 2017.
+
+\end{thebibliography}

@@ -79,15 +79,15 @@
 \contentsline {subsection}{\numberline {12.2}Codificador}{44}{subsection.12.2}%
 \contentsline {subsection}{\numberline {12.3}Associação entre Codificadores e Decodificadores}{45}{subsection.12.3}%
 \contentsline {subsection}{\numberline {12.4}Exercícios}{45}{subsection.12.4}%
-\contentsline {section}{\numberline {13}Circuito Combinacional}{46}{section.13}%
+\contentsline {section}{\numberline {13}Circuito Combinacional}{45}{section.13}%
 \contentsline {section}{\numberline {14}Circuitos Sequenciais}{46}{section.14}%
 \contentsline {section}{\numberline {15}Multiplexadores e Demultiplexadores}{46}{section.15}%
 \contentsline {subsection}{\numberline {15.1}MUX}{46}{subsection.15.1}%
 \contentsline {subsubsection}{\numberline {15.1.1}MUX 4x1}{47}{subsubsection.15.1.1}%
 \contentsline {subsection}{\numberline {15.2}DEMUX}{47}{subsection.15.2}%
-\contentsline {subsubsection}{\numberline {15.2.1}DEMUX 1x4}{48}{subsubsection.15.2.1}%
-\contentsline {subsection}{\numberline {15.3}Multiplexador x Demultiplexador}{49}{subsection.15.3}%
-\contentsline {section}{\numberline {16}Unidade Lógica Aritmética (ULA)}{50}{section.16}%
+\contentsline {subsubsection}{\numberline {15.2.1}DEMUX 1x4}{47}{subsubsection.15.2.1}%
+\contentsline {subsection}{\numberline {15.3}Multiplexador x Demultiplexador}{48}{subsection.15.3}%
+\contentsline {section}{\numberline {16}Unidade Lógica Aritmética (ULA)}{49}{section.16}%
 \contentsline {section}{\numberline {17}Formas de onda}{51}{section.17}%
 \contentsline {subsection}{\numberline {17.1}Tipos de Onda}{52}{subsection.17.1}%
 \contentsline {section}{\numberline {18}Flip-Flop}{53}{section.18}%
@@ -95,11 +95,11 @@
 \contentsline {subsection}{\numberline {18.2}Flip-Flop D}{53}{subsection.18.2}%
 \contentsline {subsection}{\numberline {18.3}Flip-Flop JK}{53}{subsection.18.3}%
 \contentsline {section}{\numberline {19}Máquina de estados}{53}{section.19}%
-\contentsline {subsection}{\numberline {19.1}Máquina de Moore}{54}{subsection.19.1}%
-\contentsline {subsubsection}{\numberline {19.1.1}Exemplo: Máquina de Estado}{54}{subsubsection.19.1.1}%
-\contentsline {subsubsection}{\numberline {19.1.2}Implementação do circuíto lógico}{55}{subsubsection.19.1.2}%
-\contentsline {subsection}{\numberline {19.2}Máquina de Mealy}{57}{subsection.19.2}%
-\contentsline {subsubsection}{\numberline {19.2.1}Implementação do Detector de Sequência}{57}{subsubsection.19.2.1}%
-\contentsline {subsubsection}{\numberline {19.2.2}Tabela de Transição e Saída (Mealy)}{57}{subsubsection.19.2.2}%
-\contentsline {subsubsection}{\numberline {19.2.3}Equações Booleanas}{58}{subsubsection.19.2.3}%
-\contentsline {subsubsection}{\numberline {19.2.4}Implementação do circuito lógico}{59}{subsubsection.19.2.4}%
+\contentsline {subsection}{\numberline {19.1}Exemplo Simplificado}{54}{subsection.19.1}%
+\contentsline {subsection}{\numberline {19.2}Máquina de Moore}{58}{subsection.19.2}%
+\contentsline {subsubsection}{\numberline {19.2.1}Exemplo: Máquina de Estado de um Semáforo}{58}{subsubsection.19.2.1}%
+\contentsline {subsection}{\numberline {19.3}Máquina de Mealy}{61}{subsection.19.3}%
+\contentsline {subsubsection}{\numberline {19.3.1}Exemplo: Detector de Sequência}{61}{subsubsection.19.3.1}%
+\contentsline {subsection}{\numberline {19.4}Revisão}{64}{subsection.19.4}%
+\contentsline {subsection}{\numberline {19.5}Exercícios Propostos:}{65}{subsection.19.5}%
+\contentsline {section}{\numberline {20}Referências}{68}{section.20}%

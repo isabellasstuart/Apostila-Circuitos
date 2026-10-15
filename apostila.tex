@@ -24,8 +24,9 @@
 \usepackage[most]{tcolorbox}
 \usepackage{hyperref}
 \usepackage{subcaption} 
-\usepackage{caption}
+\usepackage{caption} 
 \usepackage{float}
+\usepackage[T1]{fontenc}
 
 \tcbset{
   mynote/.style={
@@ -48,7 +49,7 @@
     Nathalie Godoi, Julia Acras, Isabella Stuart, Rafaela Leitoles\\
     \vspace{0.2cm}
     \large PET Computação UFPR\\
-    \large Tutor: Luiz Carlos Pessoa Albini (albini@inf.ufpr.br)
+    \large Tutor: Luiz Carlos Pessoa Albini
 }
 \date{20/02/2026}
 
@@ -64,11 +65,11 @@
 \subsection{Bytes}
 \begin{itemize}
     \item Cada dígito de um número armazenado é chamado de \textbf{\textit{bit}} (\textit{binary digit}).
-    \item Um conjunto de 4 \textit{bits} é chamado de \textbf{\textit{nibble}}.
+    \item Um conjunto de 4 bits é chamado de \textbf{\textit{nibble}}.
     \begin{itemize}
         \item [""] Ele é útil quando manipulamos valores em hexadecimal.
     \end{itemize}
-    \item Um conjunto de 8 \textit{bits} é chamado de \textbf{\textit{byte}}.
+    \item Um conjunto de 8 bits é chamado de \textbf{\textit{byte}}.
     \begin{itemize}
         \item [""] Na maioria das CPUs, é a menor unidade utilizada para operações.
     \end{itemize}
@@ -2853,56 +2854,208 @@ $J$ & $K$ & $CLK$ & $Q$ \\ \hline
 
 Uma máquina de estados é um modelo que descreve sistemas cujo comportamento depende tanto das entradas atuais quanto do estado em que o sistema se encontra. 
 
-A partir de um estado atual, o sistema recebe entradas, produz saídas e pode transitar para um novo estado, repetindo esse processo ao longo do tempo. 
+A partir de um estado atual, o sistema recebe entradas, produz saídas e pode transitar para um novo estado, repetindo esse processo ao longo do tempo. Conhecendo o estado atual e as entradas, é possível determinar completamente as saídas e o próximo estado. 
 
-Conhecendo o estado atual e as entradas, é possível determinar completamente as saídas e o próximo estado. 
+Em circuitos digitais, as máquinas de estados são implementadas com Flip-Flops, e a combinação do valor armazenado em cada flip-flops determina o estado atual da máquina de estados.
 
-Em circuitos digitais, as máquinas de estados são implementadas com flip-flops.
+As máquinas de estados são compostas por três elementos principais: entradas, estados e saída. Além disso, também existem funções para transições de estado e para definir saídas. Por exemplo:
 
-\begin{itemize}
-    \item Lógica de Entrada recebe os sinais de entrada e também o estado atual e produz o novo estado da máquina de estado;
-    \item Lógica de Saída recebe os sinais de entrada e o estado atual e produz os valores de saídas;
-    \item Memória (estado) guarda o estado atual do circuito.
-\end{itemize}
+\begin{enumerate}
+    \item Memória: conjunto de Flip-Flops que armazenam o estado atual do circuito.
+    \item Função de transição de estado (ou lógica de estado): determina o estado seguinte baseando-se no estado atual e nas entradas.
+    \item Função de saída (ou lógica de saída): define a saída atual a partir do estado atual e das entradas.
+\end{enumerate} 
+A combinação desses elementos produz uma máquina de estado.
+Para construir uma máquina de estado deve-se seguir os passos abaixo:
+\begin{enumerate}
+    \item Separação e levantamento dos dados (ex: definir número de estados e de bits necessários, determinar uma combinação de bits para uma representação dos estados, das entradas e das saidas).
+    \item Representação em um diagrama estados: desenho auxiliar para descrição das transições de estado e das saídas.
+    \item Criação de uma tabela de estados: tabela verdade que combina os estados atuais e as entradas para definir os próximos estados e as saídas da máquina.  
+    \item Mapa de karnaugh: usado para simplificação da tabela de estados quando possível. 
+    \item Representação/Desenho do circuito lógico: implementação do circuito usando Flip-Flops e portas lógicas.
+\end{enumerate} 
 
-\subsection{Máquina de Moore}
+\subsection{Exemplo Simplificado}
+\label{Exemplo}
 
-A Máquina de Moore é um tipo de máquina de estados em que a \textbf{saída} depende exclusivamente do \textbf{estado atual} da máquina. Dessa forma, a sáida permanece inalterada mesmo quando as entradas mudam.
+\textbf{Contador de 0 a 3}
+Podemos transformar um contador em uma máquina de estados, onde o estado seguinte depende do estado atual e das entradas. No entanto, neste caso não existem entradas, ou seja, é possivel perceber que as entradas podem ou não serem usadas para uma transição de estado.
 
-Isso torna a Máquina de Moore mais \textbf{simples} de projetar e de analisar seu comportamento, já que ela não é afetada imediatamente pelas alterações nas entradas.
 
-Exemplo: Um semáforo em que a saída, ou seja, a luz exibida (verde amarelo ou vermelho), é gerada a partir dos estados da máquina. 
+\textbf{Separação ou levantamento de dados:}
+Podemos pensar em algumas perguntas que devem ser respondidas para contemplar todos os dados e informações úteis, por exemplo:
+Quantos estados devem existir para ser possível representar valores de 0 a 3? Ou ainda quantos bits são necessários para essa representação?
 
-\subsubsection{Exemplo: Máquina de Estado}
+Para contarmos de 0 a 3 temos um intervalo de 4 valores (0, 1, 2 e 3), ou seja, precisamos de ao menos 4 estados para isso. Além disso, quantos bits precisamos para representar 4 valores distintos? Como vimos anteriormente: $2^b >= 4 = n $, isto é, precisamos de 2 bits para representar n valores com n = 4. Agora, precisamos  definir quais estados devem ter quais valores em sua representação em binário. Para simplificação do exemplo, podemos tomar a representação binária de n como seu respectivo estado: 
 
-\begin{figure}[h]
+\begin{table}[H]
     \centering
-    \includegraphics[width=0.5\linewidth]{circuitoMoore/semaforo.png}
-    \caption{Máquina de Estados de um Semáforo}
-    \label{fig:semaforo}
+    \begin{tabular}{|p{2cm}|p{6cm}|}
+    \hline
+    Número (n) & Representação Binária de n em 2 bits \\
+    \hline
+    0     & 00 \\
+    1     & 01 \\
+    2     & 10 \\
+    3     & 11 \\
+    \hline
+    \end{tabular}
+    \caption{Representação binária de n}
+    \label{tab:rep_bin}
+\end{table}
+
+\begin{tcolorbox}[mynote, title=Nota: representação dos estados] 
+Neste exemplo \ref{Exemplo} tomamos os valores de n iguais as suas respectivas representações binárias para simplificação do exemplo proposto. No entanto, não é necessário, ou seja, poderíamos ter representado, por exemplo, n = 0 como 11 ou ainda n' = 3 como 01, já que estamos tratando apenas a  \textbf{representação} dos estados e não a saída ou valor de fato.  
+\end{tcolorbox} 
+
+Assim, após separar dos dados e determinar uma representação binária para cada estado determinamos os  atributos iniciais para a construção da máquina de estados.
+
+\textbf{Observação: Portanto, como tomamos a representação binária de n como seu respectivo estado podemos substituir o nome "Representação Binária de n em 2 bits" em \ref{tab:rep_bin} por Estado Atual do contador.}
+
+\textbf{Representação em um diagrama estados}
+Após definirmos as informações iniciais podemos construir um diagrama de estados para auxiliar nas definição da lógica de transição de estado.
+Para essa representação usamos círculos e setas que apontam para o estado seguinte baseando-se no estado atual. Neste exemplo de contador, sabemos que existe uma ordem, isto é, se estamos no 0 devemos ir para o 1, se estamos no 1 devemos transitar para o 2 e assim sucessivamente. Portanto a representação pode ser feita da seguinte forma:
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{maquinaex.png}
+    \caption{Máquina de Estados de Contador}
+    \label{fig:maquina.ex}
 \end{figure}
 
-O diagrama da Figura \ref{fig:semaforo} representa a máquina de estados que coordena a lógica de funcionamento de um semáforo. O sistema alterna entre três estados:
+As setas indicam que estando no estado atual (representado por qualquer círculo) irá para o próximo estado indicado pela seta posição da seta.
+
+\textbf{Nota:} Caso tivessemos entradas neste exemplo seus respectivos valores (representação binária) seriam representamos em cima das setas indicando que a combinação daquele \textbf{estado atual} + \textbf{valor da saída} levam ao novo estado indicado pela ponta da seta.
+
+\textbf{Criação de uma tabela de estados:}
+Para criação de uma tabela de estados devemos ter três colunas: estado atual, variávies ou entradas e o estado seguinte. A coluna do estado seguinte tem seus valores dependentes do estado atual e das variáveis. Para definirmos o estado seguinte, começamos em um estado atual e olhamos no diagrama de estados o local que a seta indica o próximo estado. Por exemplo: no estado 00 a seta indica para o estado 01. Assim, repetimos o processo sucessivamente até contemplarmos todos os estados e combinações possívies.
+Abaixo contruímos a tabela de estados do contador \ref{Exemplo} usando como apoio o diagrama \ref{fig:maquina.ex}, e como não possuímos entradas deixaremos X no valor delas.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    Estado atual (E) & Entradas (X) & Estado Seguinte (D)  \\
+    \hline
+    00 & X & 01 \\
+    01 & X & 10 \\
+    10 & X & 11 \\
+    11 & X & 00 \\
+    \hline
+    \end{tabular}
+    \caption{Tabela de Estados}
+    \label{tab:tabela_estados}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|}
+    \hline
+    Estado atual (E) & Estado Seguinte (D)  & Saídas $S1 S0 $  \\
+    \hline
+    00 & 01 & 00 \\
+    01 & 10 & 01 \\
+    10 & 11 & 10 \\
+    11 & 00 & 11 \\
+    \hline
+    \end{tabular}
+    \caption{Tabela de Estados Simplificada com saídas}
+    \label{tab:tabela_estados2}
+\end{table}
+
+
+Na segunda tabela \ref{tab:tabela_estados2}, incluimos uma coluna que representa as saídas $S1S0$. É perceptível que como definimos a representação binárias dos números como seus respectivos estados temos que as saídas de cada estado são iguais ao estado atual. No entanto, se definissimos de outra maneira isso poderia não ocorrer. Além disso, excluímos a tabela de entradas, pois este exemplo não contempla nenhuma.
+
+\textbf{Mapa de Karnaugh}
+Para simplificação das equação / funções de transição de estado podemos usar o mapa de karnaugh criando um mapa para cada bit do estado seguinte ($D1$ e $D0$) usando a combinação dos bits do estado atual, sendo o bit mais significativo do estado atual chamado de E1 e o menos significativo E0.
+
+Para construir a expressão que representa o bit $D0$ é necessário pegar os valores nos quais esse bit admite o nível lógico 1, neste caso $D0 = \overline{E1}\overline{E0} + E1\overline{E0}$. E para o bit $D1$ seria análogo, ficando com $D1 = \overline{E1}E0 + E1\overline{E0}$.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % espaçamento vertical das células
+\begin{tabular}{|c|c|c|}
+\hline
+ & $\overline{E1}$ & $E1$ \\
+\hline
+$\overline{E0}$ & 1 & 1 \\
+\hline
+$E0$ & 0 & 0 \\
+\hline
+\end{tabular}
+\caption{Mapa de Karnaugh: bit D0}
+\label{tab:karnaugh-bitD0}
+\end{table}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % espaçamento vertical das células
+\begin{tabular}{|c|c|c|}
+\hline
+ & $\overline{E1}$ & $E1$ \\
+\hline
+$\overline{E0}$ & 0 & 1 \\
+\hline
+$E0$ & 1 & 0 \\
+\hline
+\end{tabular}
+\caption{Mapa de Karnaugh: bit D1}
+\label{tab:karnaugh-bitD1}
+\end{table}
+
+No mapa do bit $D0$ \ref{tab:karnaugh-bitD0}, é possível simplificar a equação ficando com $D0 = \overline{E0}$. Porém no bit $D1$ \ref{tab:karnaugh-bitD1} não existe uma simplificação, ou seja, a equação permanece sendo $D1 = \overline{E1}E0 + E1\overline{E0}$.
+
+\begin{tcolorbox}[mynote, title=Nota: Representação da saída $S1$ e $S0$] 
+Este processo de simplificação seria repetido para cada bit de saída caso a representação do número 'n'  fosse diferente de sua representação em binário.  
+\end{tcolorbox} 
+
+
+\textbf{Representação/Desenho do circuito lógico:}
+Após definirmos as funções de transição de estado e de saída podemos construir o desenho do circuito lógico. Abaixo está representado o circuito lógico do contador, onde as linhas azuis representam as saídas do Flip-Flop $D0$, as verdes do Flip-Flop $D1$, as laranjas as saídas $S1$ e $S0$ e por fim a vermelha o CLOCK. 
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{contador.png}
+    \caption{Circuito Lógico do Contador}
+    \label{fig:contador_circuito}
+\end{figure}
+
+\begin{tcolorbox}[mynote, title=Nota: Representação dos Estados e nomenclatura] Percebe-se que nesse circuito não escrevemos $E0$ e $E1$, os estados atuais da máquina, pois esses valores são os dados armazenados nos Flip-Flops $D1$ e $D0$. Isto significa que os valores de Estado Atual servem para organizarmos e construirmos as tabelas diferindo os estados atuais dos próximos estados, ou seja, os valores armazenados nos Flip-Flops $Ds$ são os estados atuais, enquanto a entrada $D$ em cada Flip-Flop é na verdade o próximo estado do circuito, que será alcançado quando houver um novo pulso de clock.  
+\end{tcolorbox} 
+
+\textbf{Resumindo:} As máquinas de estados são circuitos sequenciais que transitam entre estados, ou seja, seguem uma sequência pré-definida de estados. Essa transição ocorre através de um sinal de controle que é normalmente o clock. Além disso, os estados atuais são armazenados nos Flip-Flops (memória) e os estados futuros são determinados pela combinação do \textbf{estado atual} + \textbf{entradas}.
+
+\subsection{Máquina de Moore}\label{sec:MaquinaMoore}
+
+A Máquina de Moore é um tipo de máquina de estados em que a \textbf{saída} depende exclusivamente do \textbf{estado atual} da máquina. Dessa forma, a sáida permanece inalterada mesmo quando as entradas mudam. Isso torna a Máquina de Moore mais \textbf{simples} de projetar e de analisar seu comportamento, já que ela não é afetada imediatamente pelas alterações nas entradas. Por exemplo: o contador \ref{fig:contador_circuito} é uma máquina de estados de \textbf{Moore}.
+
+Novo Exemplo: Um semáforo em que a saída, ou seja, a luz exibida (verde amarelo ou vermelho), é gerada a partir dos estados da máquina. 
+
+\subsubsection{Exemplo: Máquina de Estado de um Semáforo}
+Para construir o circuito lógico devemos seguir os passos descritos anteriormente:
+
+
+\textbf{Separação ou levantamento de dados:}
+Podemos pensar num conjunto de perguntas que podem ser respondidas para definir as informações necessárias:
+
+Como funciona um semáforo? Qual a sequência (ordem) que as cores são alternadas? Quantas cores (estados) tem num semáforo? Quantos bits são necessários para contemplar todos os estados possíveis? E ainda qual cor será ativa em qual estado?
 
 \begin{itemize}
     \item \textbf{Luz Vermelha:} Indica que o fluxo é proibido.
     \item \textbf{Luz Verde:} Permite o fluxo de veículos. 
     \item \textbf{Luz Amarela:} Um estado intermediário de curta duração que sinaliza o encerramento do fluxo. 
 \end{itemize}
-A Máquina inicia no \textbf{Estado de Luz Vermelha}, passa para o \textbf{Estado de Luz Verde}, segue para o \textbf{Estado de Luz Amarela}, e por fim retorna ao \textbf{Estado de Luz Vermelha} reiniciando o ciclo novamente.
+Ou seja, existem \textbf{3} estados possíveis: vermelho, verde ou amarelo, que são as cores atuais no semáforo. Dessa forma, como circuitos digitais usam binário para representação, precisamos utilizar Flip-Flops para armazenar o estado atual. A cada Flip-Flop adicionado ao circuito dobramos a quantidade de \textbf{estados possíveis}. Assim, como necessitamos de 3 estados \textbf{(Luz Vermelha, Luz Amarela, Luz Verde)}, precisamos utilizar 2 Flip-Flops:
+$2^1 < 3 < 2^2$. Por fim, é preciso definir qual luz será ativada em determinado estado. Uma combinação possível está representada na tabela abaixo:
 
-\subsubsection{Implementação do circuíto lógico}
-
-Como circuitos digitais usam binário, precisamos utilizar Flip-Flops para armazenar o estado atual. A cada Flip-Flop adicionado ao circuito dobramos a quantidade de \textbf{estados possíveis}. Assim, como necessitamos de 3 estados \textbf{(Luz Vermelha, Luz Amarela, Luz Verde)}, precisamos utilizar 2 Flip-Flops:
-$2^1 < 3 < 2^2$
-
-Após isso, contruimos a tabela com os respectivos estados:
 
 \begin{table}[h]
     \centering
     \begin{tabular}{|l|c|c|}
     \hline
-    \textbf{Estado Atual} & \textbf{Código Binário ($E_1 E_0)$} & Explicação\\
+    \textbf{Cor Atual} & \textbf{Estado Atual em Binário ($E_1 E_0)$} & Explicação\\
     \hline
     Vermelho & 00 & Ambos os Flip-Flops desligados \\
     Verde & 01 & Apenas o Flip-Flop 0 ($E_0$) ligado \\
@@ -2913,35 +3066,94 @@ Após isso, contruimos a tabela com os respectivos estados:
     \label{tab:semáforo}
 \end{table}
 
-\begin{tcolorbox}[mynote, title=Observação sobre o Estado 11 ser inutilizado] 
-O estado 11 (ambos os Flip-Flops ligados) não é utilizado e é considerante irreleante \textbf{(Don't Care)}, pois só necessitamos de 3 estados para o funcionamento correto do circuito. Isso permite simplificar as equações booleanas.
+\begin{tcolorbox}[mynote, title=Observação: o Estado 11 inutilizado] 
+O estado 11 (ambos os Flip-Flops ligados) não é utilizado e é considerante irrelevante \textbf{(Don't Care)}, pois só necessitamos de 3 estados para o funcionamento correto do circuito. Isso permite simplificar as equações booleanas.
 \end{tcolorbox} 
 
-\vspace{0.5em}
+\textbf{Representação em um diagrama estados: }
+Após separarmos todas os dados necessários podemos representar a transição de estados em uma diagrama de estado. Neste caso, diferente do contador \ref{Exemplo}, as saídas não são a representação de um número em binário mas sim uma combinação que ligará um dos \textbf{LEDs} ou uma das \textbf{LUZES}. 
 
-Após definir os códigos binários para cada estado, definiremos a lógica de transição. Esta tabela é fundamental para determinar as equações booleanas que controlarão a entrada dos \textbf{Flip-flops} ($E_1$ e $E_0$) e o acionamento das \textbf{lâmpadas} (Vermelha, Amarela e Verde)
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{circuitoMoore/semaforo_diagrama.png}
+    \caption{Máquina de Estados de um Semáforo}
+    \label{fig:semaforo}
+\end{figure}
+
+O diagrama da Figura \ref{fig:semaforo} representa a máquina de estados que coordena a lógica de funcionamento de um semáforo. O sistema alterna entre três estados:
+
+A Máquina inicia no \textbf{Estado de Luz Vermelha}, passa para o \textbf{Estado de Luz Verde}, segue para o \textbf{Estado de Luz Amarela}, e por fim retorna ao \textbf{Estado de Luz Vermelha} reiniciando o ciclo novamente. Além disso, percebe-se que dentro de cada círculo está indicado se cada uma das \textbf{três saídas}, as luzes, está ligada (1) ou desligada (0). No caso de um semáforo só temos uma luz ligada por vez, ou seja, uma saída ativa estará ativa enquanto as outras estarão inativas.
+
+\textbf{Criação de uma tabela de estados: }
+Após definir os códigos binários para cada estado, definiremos a lógica de transição. Esta tabela é fundamental para determinar as equações booleanas que controlarão a entrada dos \textbf{Flip-flops} ($E_1$ e $E_0$) e o acionamento das \textbf{lâmpadas} (Vermelha, Amarela e Verde). Como não possuímos entradas nessa máquina de estados, usaremos uma tabela simplificada que não possui a coluna de entradas.
 
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{|c c|c c|c|c|c|}
     \hline
     \multicolumn{2}{|c|}{\textbf{Estado Atual}} & \multicolumn{2}{c|}{\textbf{Próximo Estado}} & \multicolumn{3}{c|}{\textbf{Saídas (Luzes)}} \\ \hline
-    $E_1$ & $E_0$ & $E_1$ & $E_0$ & Vermelha & Verde & Amarela \\ \hline
-    0 & 0 & 0 & 1 & 1 & 0 & 0 \\ \hline
-    0 & 1 & 1 & 0 & 0 & 1 & 0 \\ \hline
-    1 & 0 & 0 & 0 & 0 & 0 & 1 \\ \hline
+    $E_1$ & $E_0$ & $D_1$ & $D_0$ & Vermelha & Verde & Amarela \\ \hline
+    0 & 0 & 0 & 1 & 1 & 0 & 0 \\ 
+    0 & 1 & 1 & 0 & 0 & 1 & 0 \\ 
+    1 & 0 & 0 & 0 & 0 & 0 & 1 \\ 
+    \hline
     \end{tabular}
     \caption{Tabela da Transição de Estados e da Lógica da Saída}
     \label{tab:transicao_estados}
 \end{table}
 
-Após a construção da Tabela de Transição, o passo seguinte é extrair as equações booleanas das \textbf{saídas} e \textbf{entradas dos Flip-Flops}
+\textbf{Mapa de karnaugh - Simplificação:}
+Após a construção da Tabela de Transição, o passo seguinte será a simplificação usando o mapa de karnaugh para extrair as equações booleanas das \textbf{saídas} e \textbf{entradas dos Flip-Flops} simplificadas:
 
-\vspace{0.5em}
-\textbf{Equações das Lâmpadas}
+\textbf{Equações dos Flip-Flops}
+Para determinar qual será o estado seguinte para as entradas $D$ dos Flip-Flops,  olhamos para as colunas de "Próximo Estado":
 
-As lâmpadas dependem exclusivamente do estado atual ($E_1$ e $E_0$):
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % espaçamento vertical das células
+\begin{tabular}{|c|c|c|}
+\hline
+ & $\overline{E1}$ & $E1$ \\
+\hline
+$\overline{E0}$ & 1 & 0 \\
+\hline
+$E0$ & 0 & 0 \\
+\hline
+\end{tabular}
+\caption{Mapa de Karnaugh: bit D0}
+\label{tab:karnaugh-D0-semaforo}
+\end{table}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} % espaçamento vertical das células
+\begin{tabular}{|c|c|c|}
+\hline
+ & $\overline{E1}$ & $E1$ \\
+\hline
+$\overline{E0}$ & 0 & 0 \\
+\hline
+$E0$ & 1 & 0 \\
+\hline
+\end{tabular}
+\caption{Mapa de Karnaugh: bit D1}
+\label{tab:karnaugh-D1-semaforo}
+\end{table}
+
+Não existe simplificação para as equações das entradas dos Flip-Flops (Próximo Estado), ou seja, as equações permanecem sendo: 
+
+
+\begin{itemize}
+    \item \textbf{$D_1$} = $\overline{E_1} \cdot E_0$
+    \item \textbf{$D_0$} = $\overline{E_1} \cdot \overline{E_0}$
+\end{itemize}
+
+
+\textbf{Equações das Saídas - Lâmpadas}
+
+As lâmpadas dependem exclusivamente do estado atual ($E_1$ e $E_0$) e também não possuem simplificação: 
 
 \begin{itemize}
     \item \textbf{Vermelha} = $\overline{E_1} \cdot \overline{E_0}$ (ativa apenas em 00)
@@ -2949,100 +3161,114 @@ As lâmpadas dependem exclusivamente do estado atual ($E_1$ e $E_0$):
     \item \textbf{Amarela} = $E_1 \cdot  \overline{E_0}$ (ativa apenas em 10) 
 \end{itemize}
 
-\vspace{0.5em}
-\textbf{Equações dos Flip-Flops}
+\textbf{Deixamos como exercício construir o mapa para cada saída para comprovar que não existe simplificação para elas.}
 
-Para determinar qual será o estado seguinte para as entradas $D$ dos Flip-Flops,  olhamos para as colunas de "Próximo Estado":
-
-\begin{itemize}
-    \item \textbf{$D_1$} = $\overline{E_1} \cdot E_0$
-    \item \textbf{$D_0$} = $\overline{E_1} \cdot \overline{E_0}$
-\end{itemize}
+\textbf{Representação/Desenho do circuito lóogico: }
+Após defirmos as funções de transição e de saída podemos construir o circuito lógico. Abaixo está a representação de um circuito lógico deste exemplo:
 
 \begin{figure}[H]
     \centering
+    \includegraphics[width=0.5\linewidth]{circuitoMoore/semaforo_logico.png}
+    \caption{Circuito Lógico de um Semáforo}
+    \label{fig:semaforo_circuito_logico}
+\end{figure}
+
+Na imagem acima \ref{fig:semaforo_circuito_logico}, temos uma implementação de um circuito lógico de um semáforo. As linhas verdes são as saídas do Flip-Flop $D1$, as azuis do $D0$, a vermelha o CLOCK e a direta temos as funções de saída de cada led, que neste caso é a combinação dos estados atuais da memória.
+Abaixo está uma outra implementação deste exemplo, porém utilizando o simulador Digital. Os fios \textbf{verdes claro} indicam que o fio está com nível lógico 1, ou seja, está ativo enquanto os fios \textbf{verde escuro} indicam inatividade: 
+\begin{figure}[H]
+    \centering
     
+    % --- PRIMEIRA LINHA ---
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{circuitoMoore/circuito.png}
         \caption*{Esquema lógico completo.}
     \end{subfigure}
-    \hfill
-    
-    % Vermelho
+    \hfill % Empurra a segunda imagem para a extremidade direita
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{circuitoMoore/vermelho.png}
         \caption*{Estado 00: Luz Vermelha.}
     \end{subfigure}
     
-    \vspace{1em}
+    \vspace{1em} % Espaço vertical entre as duas linhas
     
-    % Verde
+    % --- SEGUNDA LINHA ---
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{circuitoMoore/verde.png}
         \caption*{Estado 01: Luz Verde.}
     \end{subfigure}
-    \hfill
-    
-    % Amarelo
+    \hfill % Empurra a quarta imagem para a extremidade direita
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{circuitoMoore/amarelo.png}
         \caption*{Estado 10: Luz Amarela.}
     \end{subfigure}
     
-    \caption{Simulação do circuito lógico em funcionamento, monstrando a transição de estados e o acionamento das lâmpadas.}
+    \caption{Simulação do circuito lógico em funcionamento, mostrando a transição de estados e o acionamento das lâmpadas. Feito no Digital.}
     \label{fig:simulacao_completa}
 \end{figure}
+
+
 
 Observa-se que o circuito opera de forma cíclica e síncrona, onde cada combinação dos Flip-flops define o acionamento de uma única luz por vez. 
 
 \subsection{Máquina de Mealy}
 
-A Máquina de Mealy é outro tipo de máquina de estados que, diferente da Máquina de Moore, gera sua saída a partir da \textbf{combinação do estado atual com a entrada}. Isso significa que a saída pode ser alterada imediatamente sempre que houver una mudança na entrada, sem que ocorra uma mudança de estado.
+A Máquina de Mealy é outro tipo de máquina de estados que, diferente da Máquina de Moore, gera sua saída a partir da \textbf{combinação do estado atual com a entrada}. Isso significa que a saída pode ser alterada imediatamente sempre que houver uma mudança na entrada, sem que ocorra uma mudança de estado.
 
 Isso geralmente resulta em uma máquina de estado com um \textbf{número de estados reduzido} para realizar a mesma função, no entanto, a lógica para sua implementação tende a ser mais complexa.
-\vspace{0.5em}
-\textbf{Exemplo: Detector de Sequência}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\linewidth]{circuitoMealy/mealy.png}
-    \caption{Máquina de Estados de um Detector de Sequência}
-    \label{fig:detector}
-\end{figure}
 
-O diagrama da Figura \ref{fig:detector} representa a máquina de estados que coordena a lógica de funcionamento de um detector de sequência. O sistema alterna entre três estados:
+\subsubsection{Exemplo: Detector de Sequência}
+Repetimos o processo de construção de uma máquina de estados seguindo os 5 passos vistos.
+
+\textbf{Separação e levantamento dos dados:}
+Devemos definir a sequência desejada, a quantidade de bits dessa sequência e os valores de entrada.
+Por exemplo: detectar a sequência 10, e os valores da entrada X assumem os valores 0/1. Agora definimos os estados necessários:
 
 \begin{itemize}
     \item \textbf{Inicial/Parado:} Indica que não houve nenhuma entrada e/ou nenhuma entrada correta.
-    \item \textbf{Primeiro número correto:} Indica que o primeiro número é correto. 
+    \item \textbf{Intermediário:} Indica que o primeiro número é correto. 
     \item \textbf{Final:} Indica que a sequência é a desejada. 
 \end{itemize}
 
-\subsubsection{Implementação do Detector de Sequência}
-
-Para transpor o diagrama da Figura \ref{fig:detector} para um circuito digital, utilizaremos a codificação binária para os estados. Seguindo a mesma lógica utilizada no exemplo anterior do semáforo, como o sistema possui 3 estados, são necessários 2 Flip-Flops para a implementação do circuito. 
-Uma possibilidade para os estados:
+Seguindo a mesma lógica utilizada no exemplo anterior do semáforo \ref{fig:semaforo}, como o sistema possui 3 estados, são necessários 2 Flip-Flops para a implementação do circuito (2 bits). Uma possibilidade para binária para os estados é :
 
 \begin{table}[H] 
 \centering 
 \begin{tabular}{|l|c|} 
 \hline
-\textbf{Estado} & \textbf{Código ($E_1$$E_0$)} \\ 
+\textbf{Estado} & \textbf{Estado representado em Binário ($E_1$$E_0$)} \\ 
 \hline
 Inicial / Parado & 00 \\ 
-Primeiro número correto (1) & 01 \\ Sequência correta (10) & 10 \\ 
+Intermediário & 01 \\ 
+Final / Sequência correta (10) & 10 \\ 
 \hline 
 \end{tabular} 
 \caption{Codificação de estados do detector de sequência.} 
 \end{table}
 
-\subsubsection{Tabela de Transição e Saída (Mealy)}
+\textbf{Representação em um diagrama estados:}
 
+Agora construímos o diagrama desta máquina de estados considerando X como o valor da entrada ou do número digitado:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{circuitoMealy/diagrama_detector.png}
+    \caption{Diagrama de Estados de um Detector de Sequência}
+    \label{fig:detector_diagrama}
+\end{figure}
+
+O diagrama da Figura \ref{fig:detector_diagrama} representa a máquina de estados que coordena a lógica de funcionamento de um detector de sequência. 
+\begin{tcolorbox}[mynote, title=Nota: Representação das saídas] 
+Diferente das Máquina de Moore \ref{sec:MaquinaMoore} que tinha as saídas dentro dos círculos, ou seja, as saídas só dependiam do \textbf{estado atual}, as saídas das máquinas de Mealy são representadas em cima das setas, visto que dependem de \textbf{estado atual} + \textbf{entradas}. 
+\end{tcolorbox} 
+
+\textbf{Criação de uma tabela de estados:}
 Diferente da abordagem de Moore utilizada no semáforo, a saída (S) neste circuito depende simultaneamente da entrada atual (X) e do estado atual. A tabela abaixo detalha como o sistema transita entre os estados e em que momento a sequência é validada:
+
 
 \begin{table}[H] 
 \centering 
@@ -3050,7 +3276,7 @@ Diferente da abordagem de Moore utilizada no semáforo, a saída (S) neste circu
 \hline 
 \textbf{Entrada (X)} & \multicolumn{2}{c|}{\textbf{Estado Atual}} & \multicolumn{2}{c|}{\textbf{Próximo Estado}} & \textbf{Saída (S)} \\
 \hline
-X & $E_1$ & $E_0$ & $E_1$ & $E_0$ & S \\
+X & $E_1$ & $E_0$ & $D_1$ & $D_0$ & S \\
 0 & 0 & 0 & 0 & 0 & 0 \\
 1 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 1 & 1 & 0 & \textbf{1} \rlap{~$\longleftarrow$ \textbf{ Sequência "10" detectada!}} \\
@@ -3062,9 +3288,10 @@ X & $E_1$ & $E_0$ & $E_1$ & $E_0$ & S \\
 \caption{Tabela de Transição e Lógica de Saída de Mealy.}
 \end{table}
 
-\subsubsection{Equações Booleanas}
+\textbf{Mapa de Karnaugh - Simplificação:}
+Deixamos como exercício para o leitor a realização desta simplificação.
 
-A partir da Tabela de Transição, construimos as funções lógicas para as entradas dos Flip-Flops ($D_1$ e $D_0$) e para a saída (S). Nota-se que, por ser uma Máquina de Mealy, a variável de entrada X aparece diretamente na equação de saída:
+Continuando, a partir da Tabela de Transição, construimos as funções lógicas (funções de transição de estado) para as entradas dos Flip-Flops ($D_1$ e $D_0$) e para a saída ($S$). Nota-se que, por ser uma Máquina de Mealy, a variável de entrada X aparece diretamente na equação de saída:
 
 \begin{itemize} 
     \item \textbf{$D_1$} = $\overline{E_1} \cdot E_0 \cdot \overline{X}$ (Acionado apenas quando o estado é "1" e chega o bit "0"). 
@@ -3074,47 +3301,196 @@ A partir da Tabela de Transição, construimos as funções lógicas para as ent
 
 Observa-se que o detector de sequência apresenta uma resposta imediata assim que p bit "0" é detectado na entrada. Logo após isso a saída S assume nível lógico 1 sem aguardar a transição do próximo pulso de \textit{clock} para o estado final.
 
-\subsubsection{Implementação do circuito lógico}
+\textbf{Representação/Desenho do circuito lógico: }
+Após extrairmos as funções de transição de estado e de saída podemos transformar num circuito lógico. Abaixo estão duas representação: um desenho e uma implementação possível no Digital.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{circuitoMealy/circuito-logico-detector.png}
+    \caption{Desenho do Circuito Lógico de um Detector de Sequência}
+    \label{fig:detector_circuito}
+\end{figure}
+
+Nesta representação \ref{fig:detector_circuito}, as linhas azuis e verdes continuam representando as saídas dos Flip-Flops $D0$ e $D1$, respectivamente, e o fio vermelho permanece indicando o CLOCK. Porém, neste exemplo, existe a entrada \textbf{$X$}, e por se tratar de uma máquina de mealy, a saída depende tanto do valor do \textbf{estado atual} como do valor da \textbf{entrada}. Assim, percebemos que o fio rosa que representa a entrada sendo uma das variáveis que compoem a função de saída da variável \textbf{$S$}.
+
+
+Implementação deste circuito no Digital:
 \begin{figure}[H]
     \centering
     
+    % --- PRIMEIRA LINHA ---
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{circuitoMealy/EstadoInativo.png}
         \caption*{Esquema lógico completo.}
     \end{subfigure}
-    \hfill
-    
-    % Estado Inicial
+    \hfill % Espaço elástico para empurrar a próxima imagem para a direita
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{circuitoMealy/EstadoParado.png}
         \caption*{Estado 00: Inicial/Parado.}
     \end{subfigure}
     
-    \vspace{1em}
+    \vspace{1em} % Espaçamento vertical entre as linhas
     
-    % Estado 1 Correto
+    % --- SEGUNDA LINHA ---
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{circuitoMealy/Estado1Correto.png}
         \caption*{Estado 01: 1º número correto.}
     \end{subfigure}
-    \hfill
-    
-    % Estado Final
+    \hfill % Espaço elástico para empurrar a próxima imagem para a direita
     \begin{subfigure}{0.48\textwidth}
         \centering
         \includegraphics[width=\linewidth]{circuitoMealy/EstadoFinal.png}
         \caption*{Estado 10: Estado Final/ Sequência Correta.}
     \end{subfigure}
     
-    \caption{Simulação do detector de sequência em funcionamento, destacando a ativação da saída $S$ no momento da detecção.}
+    \caption{Simulação do detector de sequência em funcionamento, destacando a ativação da saída $S$ no momento da detecção. Implemetação no Digital}
     \label{fig:simulacao_completa_mealy}
 \end{figure}
 
-O circuito acima comprova que a Máquina de Mealy responde instantaneamente às variações da entrada. Diferente do semáforo, a saída deste detector ativa imediatamente assim que a sequência "10" é completada, sem depender de um próximo \textit{clock}.
+As representações acima \ref{fig:detector_circuito} e \ref{fig:simulacao_completa_mealy} comprovam   que a Máquina de Mealy responde instantaneamente às variações da entrada. Diferente do semáforo, a saída deste detector ativa imediatamente assim que a sequência "10" é completada, sem depender de um próximo \textit{clock}.
+
+
+\subsection{Revisão}
+
+\textbf{Classificação: Moore ou Mealy}
+
+A diferença fundamental está na lógica de saída:
+\begin{itemize}
+    \item Máquina de Moore: A saída depende exclusivamente do estado atual. A saída só é alterada em sincronia com o clock. No diagrama \ref{fig:semaforo}, a saída é representada dentro do círculo do estado.
+    \item Máquina de Mealy: A saída depende do estado atual e das entradas. A saída responde instantaneamente às mudanças na entrada, sem a necessidade de esperar o próximo ciclo de clock. No diagrama \ref{fig:detector_diagrama}, a saída é indicada nas setas de transição.
+\end{itemize}
+
+\textbf{O Estado de Reset ou Inicial}
+
+Todas as máquina de estados precisam começar em um ponto de partida.
+O sinal de Reset (ou Clear dos Flip-Flops) garante que, ao ligar o circuito, a máquina inicie em um estado conhecido e/ou inicial (geralmente o Estado 0).
+Caso não existe o Reset, o sistema pode iniciar em um estado desconhecido e imprevisível, podendo prejudicar o funcionamento correto.
+
+\subsection{Exercícios Propostos:}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{Detector de Sequência:} Projete um detector de sequências cuja saída, $y$, será `1' sempre que ocorrer a sequência de entradas $11$.
+    
+    \medskip
+    \textbf{Exemplo:}
+    \begin{center}
+    \begin{tabular}{r l}
+        $x$: & \texttt{0 1 1 0 0 1 1 1 0 1 1 0} \\
+        $y$: & \texttt{0 0 1 0 0 0 1 0 0 0 1 0}
+    \end{tabular}
+    \end{center}
+    \medskip
+
+
+
+\item Projete um detector de sequências cuja saída, $y$, será `1' sempre que ocorrer a sequência de entradas $1101$. Agora sequências sobrepostas também devem ser detectadas.
+    
+    \medskip
+    \textbf{Exemplo:}
+    \begin{center}
+    \begin{tabular}{r l}
+        $x$: & \texttt{0 1 0 1 1 1 0 1 1 0 1 0 1 1} \\
+        $y$: & \texttt{0 0 0 0 0 0 0 1 0 0 1 0 0 0}
+    \end{tabular}
+    \end{center}
+    \medskip
+
+\item \textbf{Sequência de valores:} Projete uma máquina de estados que seja capaz de gerar a sequência 001, 010, 100 e 110 de forma cíclica.
+
+\item \textbf{Máquina de refrigerante}: Em máquinas automáticas de compra de refrigerantes e afins, um mecanismo de contagem de moedas é utilizado para se controlar tanto a liberação do produto quanto a liberação de troco. Devido a sua operação, este mecanismo pode ser modelado como uma máquina de estados finitos que receba uma sequência de moedas depositadas para então controlar a liberação do produto e a liberação de troco para o montante depositado.
+    
+    Uma arquitetura possível para o mecanismo citado pode ser como a apresentada na figura abaixo, em que uma unidade de controle receba dois sinais de entrada ($M_2$ e $M_1$) provenientes de um detector de moedas e então controle, por meio de seus sinais de saída ($P$ e $T$), as unidades de liberação do produto e de troco, respectivamente.
+
+    Considerando que os sinais de liberação sejam ativos em nível lógico ``1'' e que o detector de moedas gere sinais como os apresentados na tabela abaixo, projete uma máquina de estado baseada no modelo de \textbf{Moore} para atuar como unidade de controle do sistema exemplificado. De uma forma geral, esta unidade de controle deve ser tal que à medida que sejam depositados valores (e tais valores gerem saídas no detector de moedas), a soma total seja computada e o sinal de liberação do produto seja ativado tão logo a soma chegue e/ou ultrapasse a quantia de 2 unidades monetárias. Caso a quantia depositada ultrapasse o limite citado, o sinal de liberação de troco deve ser levado a nível lógico ``1''. Assuma que a cada depósito efetuado, um sinal de pulso é enviado à máquina de estado e considere, ainda, que assim que houver a liberação do produto, o próximo depósito deverá reiniciar a soma.
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            \textbf{Moeda} & \textbf{$M_2 M_1$} \\ \hline
+            - & 00 \\ \hline
+            0.25 & 01 \\ \hline
+            0.50 & 10 \\ \hline
+            1.00 & 11 \\ \hline
+        \end{tabular}
+    \end{table}
+
+    \vspace{2em}
+
+    \item \textbf{Operação de um Robô:} Projete uma máquina de estados para controlar a operação de um robô que se movimente e desvie de objetos a sua frente. Assuma que este robô seja composto basicamente por um detector de objetos e duas rodas que o possibilitem virar tanto à direita quanto à esquerda.
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{$C_2 C_1$} & \textbf{Ação} \\ \hline
+            00 & Seguir em frente \\ \hline
+            01 & Virar à direita \\ \hline
+            10 & Virar à esquerda \\ \hline
+            11 & Não operar \\ \hline
+        \end{tabular}
+    \end{table}
+
+    Este detector de objetos é posicionado no nariz do robô e sua saída é conectada à entrada de sua unidade de controle por meio de um sinal $x$, tal que enquanto $x = \text{`1'}$, um objeto é detectado à sua frente. Já as saídas desta unidade de controle, $C_1 C_2$, devem controlar o movimento a ser efetuado pelo robô tal qual a codificação apresentada acima.
+
+    Um exemplo de estados que possam ser utilizados no projeto é apresentado na tabela abaixo.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Estado} & \textbf{Descrição} \\ \hline
+            A & Obstáculo não detectado, última virada à esquerda \\ \hline
+            B & Obstáculo detectado e virando à direita \\ \hline
+            C & Obstáculo não detectado, última virada à direita \\ \hline
+            D & Obstáculo detectado e virando à esquerda \\ \hline
+        \end{tabular}
+    \end{table}
+    
+\item \textbf{Catraca de Ônibus:} Projete a máquina de estados para controlar a catraca de um ônibus.
+    \begin{itemize}
+        \item \textbf{Entradas:} pago ok ($p$), empurrar ($e$).
+        \item \textbf{Estados:} aberta ($A$), fechada ($F$).
+        \item \textbf{Regras:}
+        \begin{enumerate}
+            \item A catraca deve permanecer fechada enquanto a passagem não for paga.
+            \item Quando a passagem for paga, a catraca libera a passagem e pode ser empurrada.
+            \item Depois de empurrada, a catraca deve voltar a ficar fechada.
+            \item Pagamentos feitos com a catraca aberta implicam na perda do dinheiro e a catraca continua aberta.
+        \end{enumerate}
+    \end{itemize}
+
+    \item \textbf{Contador:} Faça uma máquina de estados e seu circuito para um contador de 2 bits.
+
+    \item \textbf{Fechadura Digital (Sequência Fixa):} Faça uma máquina de estados e seu circuito para uma fechadura digital de 4 dígitos binários com o seguinte funcionamento:
+    \begin{enumerate}
+        \item Aperte \textit{start} para começar.
+        \item Digite 0 $\rightarrow$ Digite 1 $\rightarrow$ Digite 1 $\rightarrow$ Digite 0.
+        \item Saída: 1 (abre).
+        \item Caso a sequência digitada seja diferente de $0110$, deve retornar ao início.
+    \end{enumerate}
+
+    \item \textbf{Fechadura Digital (Variação):} Idem ao anterior, mas entre o \textit{start} e a sequência $0110$ pode ter qualquer dígito.
+
+    \item \textbf{Máquina de Venda:} Faça uma máquina de estados e seu circuito para uma máquina de venda de refrigerante automática. 
+    \begin{itemize}
+        \item O refrigerante custa R\$ 4,00.
+        \item A máquina aceita moedas de R\$ 1,00 e R\$ 2,00.
+        \item A máquina não fornece troco. Quando o valor de R\$ 4,00 for atingido, libera o refrigerante.
+    \end{itemize}
+
+    \item \textbf{Máquina de Venda (com troco):} Idem ao anterior, mas a máquina aceita notas de R\$ 5,00 e deve fornecer troco.
+
+    \item \textbf{Máquina com mais refrigerante:} Idem ao anterior, mas a máquina tem 2 refris que o cliente pode escolher.
+    
+\end{enumerate}
+
+\newpage
+\section{Referências}
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{referencias}
 
 \end{document}
-
-
